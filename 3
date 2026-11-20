@@ -1,0 +1,9 @@
+SELECT
+    partition_date,
+    household_id,
+    COALESCE(
+        MAX(CASE WHEN TRIM(optout_fl) = 'Y' THEN 'Y' END),
+        ' '
+    ) AS optout_fl
+FROM your_table
+GROUP BY partition_date, household_id;
